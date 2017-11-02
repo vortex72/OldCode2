@@ -1,0 +1,93 @@
+﻿@model IEnumerable<CCCore.Models.mProduct>
+
+@{
+    ViewBag.Title = "Planes de Afiliación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var grid = new WebGrid(Model, null, null, 15);
+}
+
+@using CCCore.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink(" " + CCResources.loc_Start, "Index", "Home", new { @class = "fa fa-dashboard" })</li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header">
+            </div>
+            <div class="box-body table-responsive">
+                @Html.AntiForgeryToken()
+                @grid.GetHtml(
+                        tableStyle: "webgrid-table",
+                        headerStyle: "webgrid-header",
+                        footerStyle: "webgrid-footer",
+                        alternatingRowStyle: "webgrid-alternating-row",
+                        selectedRowStyle: "webgrid-selected-row",
+                        rowStyle: "webgrid-row-style",
+                        mode: WebGridPagerModes.All,
+                        columns:
+                            grid.Columns(
+                                    grid.Column("ProductName",
+                                                CCResources.prod_Name,
+                                                format: (item) => @item.mProduct_Name, style: "col-ms-2"),
+                                    grid.Column("Membership",
+                                                CCResources.prod_MembershipFee,
+                                                format: (item) => @item.mProduct_MembershipUniqueFee.ToString("f"), style: "col-ms-2"),
+                                    grid.Column("PaymentAmt",
+                                                CCResources.prod_PaymentFee,
+                                                format: (item) => item.mProduct_PaymentAmount.ToString("f"), style: "col-ms-2"),
+                                    grid.Column("Dividends",
+                                                CCResources.prod_EarnedDividends,
+                                                format: (item) => item.mProduct_EarnedDividends.ToString("f"), style: "col-ms-2"),
+                                    grid.Column("PaymentFreq",
+                                                CCResources.prod_PaymentFreq,
+                                                format: (item) => item.mProduct_PaymentFrequency, style: "col-ms-2"),
+                                    grid.Column("Status",
+                                                CCResources.prod_Status,
+                                                format: (item) => item.mProduct_Status, style: "col-ms-2"),
+                                        grid.Column("Action", " ", format: @<text>
+                                        @Html.ActionLink(" ", "Edit", null, new { id = item.mProduct_Id }, new { @class = "btn btn-twitter fa fa-pencil-square-o" })
+                                        @Html.ActionLink(" ", "Delete", null, new { id = item.mProduct_Id }, new { @class = "btn btn-twitter fa fa-trash" })
+                                    </text>, style: "col-ms-2", canSort: false)
+                                )
+                        )
+            </div>
+            <div class="box-footer">
+                @Html.ActionLink(" " + CCResources.gen_Add, "Create", null, new { @class = "btn btn-twitter fa fa-plus-square" })
+                @Html.ActionLink(" " + CCResources.gen_Back, "Index", "Home", new { @class = "btn btn-twitter fa fa-caret-square-o-left" })
+            </div>
+
+        </div>
+    </section>
+</aside>
+
+@*@Scripts.Render("~/bundles/datatables")
+<script type="text/javascript">
+            $(function() {
+                $('#plans').dataTable({
+                    "bPaginate": true,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": true,
+                    "bAutoWidth": false
+                });
+            });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("li").removeClass("active");
+        $("#tables").addClass("active");
+        $("#tables_menu").css("display", "block");
+        $("#tables_datatables").addClass("active");
+        $("#tables_arrow").addClass("fa-angle-down");
+    });
+</script>*@

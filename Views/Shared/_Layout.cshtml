@@ -1,0 +1,503 @@
+﻿@using eClub.L10nResources
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>eClub | Sistema de Gestión CardClub</title>
+    @*<title>@ViewBag.Title - My ASP.NET Application</title>*@
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    @Styles.Render("~/Content/css/bootstrap")
+    @Styles.Render("~/Content/css/eClub") 
+    <link href="@Url.Content("~/Content/fonts/font-awesome/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+
+    @Styles.Render("~/Content/css/bootstrap-slider")
+    @Styles.Render("~/Content/css/bootstrap-wysihtml5")
+    @Styles.Render("~/Content/css/colorpicker")
+    @Styles.Render("~/Content/css/datatables")
+    @Styles.Render("~/Content/css/datepicker")
+    @Styles.Render("~/Content/css/daterangepicker")
+    @Styles.Render("~/Content/css/iCheck")
+    @Styles.Render("~/Content/css/ionslider")
+    @Styles.Render("~/Content/css/jvectormap")
+    @Styles.Render("~/Content/css/morris")
+    @Styles.Render("~/Content/css/timepicker")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    @Scripts.Render("~/bundles/eClub")
+</head>
+
+<body class="skin-blue">
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+        <a href="@Url.Action("Index", "Home")" class="logo">
+            <!-- Add the class icon to your logo image or logo icon to add the margining -->
+            <img src="~/Content/img/LogoCardClubWeb_drupal_5.png" alt="CardClub Logo">
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Ocultar Barra de Navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    @*<li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope"></i>
+                            <span class="label label-success">4</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Tiene 4 Mensajes</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- start message -->
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="@Url.Content("~/Content/img/avatar3.png")" class=" img-circle" alt="User Image" />
+                                            </div>
+                                            <h4>
+                                                Equipo de Soporte
+                                                <small><i class="fa fa-clock-o"></i> 5 min</small>
+                                            </h4>
+                                            <p>Su requerimiento fue atendido</p>
+                                        </a>
+                                    </li><!-- end message -->
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left"> 
+                                                <img src="@Url.Content("~/Content/img/avatar2.png")" class="img-circle" alt="user image" />
+                                            </div>
+                                            <h4>
+                                                María Pérez
+                                                <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="@Url.Content("~/Content/img/avatar.png")" class="img-circle" alt="user image" />
+                                            </div>
+                                            <h4>
+                                                Developers
+                                                <small><i class="fa fa-clock-o"></i> Today</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="@Url.Content("~/Content/img/avatar2.png")" class="img-circle" alt="user image" />
+                                            </div>
+                                            <h4>
+                                                Sales Department
+                                                <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="@Url.Content("~/Content/img/avatar.png")" class="img-circle" alt="user image" />
+                                            </div>
+                                            <h4>
+                                                Reviewers
+                                                <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">See All Messages</a></li>
+                        </ul>
+                    </li>*@
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-warning"></i>
+                            <span class="label label-warning">3</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Tiene 3 notificaciones</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="ion ion-ios7-people info"></i> 5 Nuevos miembros suscritos hoy
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning danger"></i> Una descripción muy larga que pudiera no caber en la página y causar problema
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ion ion-ios7-cart success"></i> 25 Ventas esta semana del equipo azul
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">Ver Todas</a></li>
+                        </ul>
+                    </li>
+                    <!-- Tasks: style can be found in dropdown.less -->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-tasks"></i>
+                            <span class="label label-danger">2</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Hoy hay 2 cumpleañeros</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Juan Gomez
+                                                <small class="pull-right">25</small>
+                                            </h3>
+                                            @*<div class="progress xs">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">20% Complete</span>
+                                                </div>
+                                            </div>*@
+                                        </a>
+                                    </li><!-- end task item -->
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Ligia Vélez
+                                                <small class="pull-right">43</small>
+                                            </h3>
+                                            @*<div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">40% Complete</span>
+                                                </div>
+                                            </div>*@
+                                        </a>
+                                    </li><!-- end task item -->
+                                    @*<li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Some task I need to do
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">60% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li><!-- end task item -->
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Make beautiful transitions
+                                                <small class="pull-right">80%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">80% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li><!-- end task item -->*@
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">Ver Todos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span>Mariana Martínez <i class="caret"></i></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header bg-blue">
+                                <img src="@Url.Content("~/Content/img/avatar3.png")" class="img-circle" alt="User Image" />
+                                <p>
+                                    Mariana Martinez - Operador Telefónico
+                                    <small>Ext. 123456</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            @*<li class="user-body">
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Prospectos</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Sales</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Clientes</a>
+                                </div>
+                            </li>*@
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href=@Url.Action("_Login","Home") class="btn btn-default btn-flat">Salir</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                @*<div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="@Url.Content("~/Content/img/avatar3.png")" class="img-circle" alt="User Image" />
+                    </div>
+                    <div class="pull-left info">
+                        <p>Hola, Mariana</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search..." />
+                        <span class="input-group-btn">
+                            <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>*@
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li id="dashboard">
+                        <a href="@Url.Action("Index", "Home")">
+                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li id="security" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-lock"></i>
+                            <span>Seguridad</span>
+                            <i id="security_arrow" class="fa fa-angle-double-down pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" id="security_menu">
+                            <li id="User"><a href="@Url.Action("Index", "ApplicationUsers")"><i class="fa fa-angle-double-right"></i> Usuarios</a></li>
+                            <li id="Role"><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-double-right"></i> Roles</a></li>
+                        </ul>
+                    </li>
+                    <li id="configuration" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-wrench"></i> 
+                            <span>Configuración</span>
+                            <i id="tables_arrow" class="fa fa-angle-double-down pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" id="config_menu">
+                            <li id="Tables"><a href="@Url.Action("Index", "AppTables")"><i class="fa fa-angle-double-right"></i> Tablas Base</a></li>
+                        </ul>
+                    </li>
+                    <li id="product" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-barcode"></i>
+                            <span>@CCResources.product</span>
+                            <i id="product_arrow" class="fa fa-angle-double-down pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" id="productconfig_menu">
+                            <li id="Product"><a href="@Url.Action("Index", "mProducts")"><i class="fa fa-angle-double-right"></i> @CCResources.product</a></li>
+                            <li id="SubProduct"><a href="@Url.Action("Index", "mSubProducts")"><i class="fa fa-angle-double-right"></i> @CCResources.subproduct</a></li>
+                            <li id="Benefit"><a href="@Url.Action("Index", "Benefits")"><i class="fa fa-angle-double-right"></i> @CCResources.benefit</a></li>
+                        </ul>
+                    </li>
+                    <li id="sale">
+                        <a href="@Url.Action("Create", "Clients")">
+                            <i class="fa fa-user"></i> <span>Afiliación</span>
+                        </a>
+                    </li>
+                    <li id="customerservice" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-user-plus"></i>
+                            <span>Atención al socio</span>
+                            <i id="custserv_arrow" class="fa fa-angle-double-down pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" id="custserv_menu">
+                            <li id="claims"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Reclamos</a></li>
+                            <li id="appointments"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Citas</a></li>
+                            <li id="creditcardrenewal"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Venc. Tarjetas</a></li>
+                            <li id="withhold"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Retención</a></li>
+                            <li id="referred"><a href="@Url.Action("Index", "Home")"><i class="fa fa-users"></i> Referidos</a></li>
+                        </ul>
+                    </li>
+                    <li id="billing" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-usd"></i>
+                            <span>Facturación</span>
+                            <i id="billing_arrow" class="fa fa-angle-double-down pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" id="billing_menu">
+                            <li id="billing"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Facturación</a></li>
+                            <li id="statement"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Estado de Cuenta</a></li>
+                            <li id="accountingreport"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Reporte contable</a></li>
+                        </ul>
+                    </li>
+                    <li id="collections" class="treeview">
+                        <a href="#">
+                            <i class="fa fa-credit-card"></i>
+                            <span>Cobranza</span>
+                            <i id="collections_arrow" class="fa fa-angle-double-down pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" id="collections_menu">
+                            <li id="dialycollection"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Cobro Diario</a></li>
+                            <li id="deniedcards"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Reenvío a Cobro</a></li>
+                            <li id="changecreditcard"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Cambio Tarjeta</a></li>
+                        </ul>
+                    </li>
+                    <li id="dividends">
+                        <a href="@Url.Action("Index", "Home")">
+                            <i class="fa fa-money"></i> <span>@CCResources.prod_EarnedDividends</span>
+                        </a>
+                    </li>
+                    <li id="compliance">
+                        <a href="#">
+                            <i class="fa fa-check-square-o"></i>
+                            <span>Cumplimiento</span>
+                            <i id="compliance_arrow" class="fa fa-angle-double-down pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" id="backoffice_menu">
+                            <li id="products"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Productos</a></li>
+                            <li id="insurance"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Seguros</a></li>
+                            <li id="beneficiaries"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Beneficiarios</a></li>
+                            <li id="witholding"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Clientes de Baja</a></li>
+                        </ul>
+                    </li>
+                    <li id="backoffice">
+                        <a href="#">
+                            <i class="fa fa-briefcase"></i>
+                            <span>BackOffice</span>
+                            <i id="backoffice_arrow" class="fa fa-angle-double-down pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" id="backoffice_menu">
+                            <li id="badges"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Carnets</a></li>
+                            <li id="kits"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Kits</a></li>
+                            <li id="delivery"><a href="@Url.Action("Index", "Home")"><i class="fa fa-angle-double-right"></i> Ditribución</a></li>
+                        </ul>
+                    </li>
+
+                    @*<li id="widgets">
+                <a href="@Url.Action("Widgets", "Widgets")">
+                    <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
+                </a>
+            </li>
+            <li id="charts" class="treeview">
+                <a href="#">
+                    <i class="fa fa-bar-chart-o"></i>
+                    <span>Charts</span>
+                    <i id="charts_arrow" class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu" id="charts_menu">
+                    <li id="charts_morris"><a href="@Url.Action("Morris", "Charts")"><i class="fa fa-angle-double-right"></i> Morris</a></li>
+                    <li id="charts_flot"><a href="@Url.Action("Flot", "Charts")"><i class="fa fa-angle-double-right"></i> Flot</a></li>
+                    <li id="charts_inline"><a href="@Url.Action("Inline", "Charts")"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+                </ul>
+            </li>
+            <li id="uielements" class="treeview">
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>UI Elements</span>
+                    <i id="uielements_arrow" class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu" id="uielements_menu">
+                    <li id="uielements_general"><a href="@Url.Action("General", "UI")"><i class="fa fa-angle-double-right"></i> General</a></li>
+                    <li id="uielements_icons"><a href="@Url.Action("Icons", "UI")"><i class="fa fa-angle-double-right"></i> Icons</a></li>
+                    <li id="uielements_buttons"><a href="@Url.Action("Buttons", "UI")"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
+                    <li id="uielements_sliders"><a href="@Url.Action("Sliders", "UI")"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
+                    <li id="uielements_timeline"><a href="@Url.Action("Timeline", "UI")"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
+                </ul>
+            </li>
+            <li id="forms" class="treeview">
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Forms</span>
+                    <i id="forms_arrow" class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu" id="forms_menu">
+                    <li id="forms_general"><a href="@Url.Action("General", "Forms")"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
+                    <li id="forms_advanced"><a href="@Url.Action("Advanced", "Forms")"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
+                    <li id="forms_editors"><a href="@Url.Action("Editors", "Forms")"><i class="fa fa-angle-double-right"></i> Editors</a></li>
+                </ul>
+            </li>
+            <li id="tables" class="treeview">
+                <a href="#">
+                    <i class="fa fa-table"></i> <span>Tables</span>
+                    <i id="tables_arrow" class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu" id="tables_menu">
+                    <li id="tables_simple"><a href="@Url.Action("Simple", "Tables")"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
+                    <li id="tables_datatables"><a href="@Url.Action("Data", "Tables")"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
+                </ul>
+            </li>
+            <li id="calendar">
+                <a href="@Url.Action("Calendar", "Calendar")">
+                    <i class="fa fa-calendar"></i> <span>Calendar</span>
+                    <small class="badge pull-right bg-red">3</small>
+                </a>
+            </li>
+            <li id="mailbox">
+                <a href="@Url.Action("Mailbox", "Mailbox")">
+                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                    <small class="badge pull-right bg-yellow">12</small>
+                </a>
+            </li>
+            <li id="examples" class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Examples</span>
+                    <i id="examples_arrow" class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu" id="examples_menu">
+                    <li id="examples_invoice"><a href="@Url.Action("Invoice", "Pages")"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
+                    <li id="examples_login"><a href="@Url.Action("Login", "Pages")"><i class="fa fa-angle-double-right"></i> Login</a></li>
+                    <li id="examples_register"><a href="@Url.Action("Register", "Pages")"><i class="fa fa-angle-double-right"></i> Register</a></li>
+                    <li id="examples_lockscreen"><a href="@Url.Action("Lockscreen", "Pages")"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
+                    <li id="examples_notfound"><a href="@Url.Action("NotFound", "Pages")"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
+                    <li id="examples_error"><a href="@Url.Action("Error", "Pages")"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
+                    <li id="examples_empty"><a href="@Url.Action("Empty", "Pages")"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
+                </ul>
+            </li>*@
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        
+        @RenderBody()
+       
+    </div><!-- ./wrapper -->
+   
+</body>
+</html>

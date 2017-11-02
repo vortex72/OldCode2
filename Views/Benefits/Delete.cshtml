@@ -1,0 +1,120 @@
+﻿@model eClub.Models.Benefit
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Benefit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProvider_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProvider_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_StartPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_StartPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_TopBenefitByPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_TopBenefitByPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_BenefitUseFrequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_BenefitUseFrequency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_EarnedDividends)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_EarnedDividends)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_DividendsDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_DividendsDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_DividendsMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_DividendsMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_DividendsMin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_DividendsMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dBenefitsStatus_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dBenefitsStatus_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SECUser_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SECUser_ID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

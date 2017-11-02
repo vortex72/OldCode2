@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="gen_Add" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="gen_Back" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="gen_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="gen_Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="gen_Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="gen_English" xml:space="preserve">
+    <value>Inglés</value>
+  </data>
+  <data name="gen_Enter" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="gen_Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="gen_Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="gen_Submit" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="loc_Start" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="login_Access" xml:space="preserve">
+    <value>Ingreso al sistema</value>
+  </data>
+  <data name="login_ForgotPassword" xml:space="preserve">
+    <value>Olvidé mi password</value>
+  </data>
+  <data name="login_Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="login_Rememberme" xml:space="preserve">
+    <value>Recordarme</value>
+  </data>
+  <data name="login_Username" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="prod_EarnedDividends" xml:space="preserve">
+    <value>Dividendos por Período</value>
+  </data>
+  <data name="prod_MembershipFee" xml:space="preserve">
+    <value>Membresía</value>
+  </data>
+  <data name="prod_Name" xml:space="preserve">
+    <value>Nombre del Producto</value>
+  </data>
+  <data name="prod_PaymentFee" xml:space="preserve">
+    <value>Cuota</value>
+  </data>
+  <data name="prod_PaymentFreq" xml:space="preserve">
+    <value>Frecuencia de Pago</value>
+  </data>
+  <data name="prod_PaymentFreqAnnual" xml:space="preserve">
+    <value>Anual</value>
+  </data>
+  <data name="prod_PaymentFreqBiannual" xml:space="preserve">
+    <value>Semestral</value>
+  </data>
+  <data name="prod_PaymentFreqBimonthly" xml:space="preserve">
+    <value>Bimestral</value>
+  </data>
+  <data name="prod_PaymentFreqMonthly" xml:space="preserve">
+    <value>Mensual</value>
+  </data>
+  <data name="prod_PaymentFreqQuarter" xml:space="preserve">
+    <value>Trimestral</value>
+  </data>
+  <data name="prod_PaymentFreqTriannual" xml:space="preserve">
+    <value>Cuatrimestral</value>
+  </data>
+  <data name="prod_Status" xml:space="preserve">
+    <value>Estado del Plan</value>
+  </data>
+  <data name="prod_ValidityStart" xml:space="preserve">
+    <value>Vigente Desde</value>
+  </data>
+  <data name="role_CanDelete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="role_CanEdit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="role_CanPrint" xml:space="preserve">
+    <value>Imprimir</value>
+  </data>
+  <data name="role_CanQuery" xml:space="preserve">
+    <value>Consultar</value>
+  </data>
+  <data name="role_Description" xml:space="preserve">
+    <value>Descripción del Rol</value>
+  </data>
+  <data name="role_Name" xml:space="preserve">
+    <value>Nombre del Rol</value>
+  </data>
+  <data name="scr_File" xml:space="preserve">
+    <value>Descripción de Pantalla</value>
+  </data>
+  <data name="scr_Name" xml:space="preserve">
+    <value>Nombre de Pantalla</value>
+  </data>
+  <data name="subpr_Beneficiaries" xml:space="preserve">
+    <value>Beneficiario</value>
+  </data>
+  <data name="subpr_Dividends" xml:space="preserve">
+    <value>Dividendos por período</value>
+  </data>
+  <data name="subpr_MaxAge" xml:space="preserve">
+    <value>Edad Máxima</value>
+  </data>
+  <data name="subpr_MaxAmount" xml:space="preserve">
+    <value>Monto por Cliente</value>
+  </data>
+  <data name="subpr_Name" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="subpr_PaymentAmt" xml:space="preserve">
+    <value>Monto</value>
+  </data>
+  <data name="subpr_PaymentExon" xml:space="preserve">
+    <value>Exoneración</value>
+  </data>
+  <data name="subpr_StartDate" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="subpr_Status" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="subpr_EndDate" xml:space="preserve">
+    <value>Vigencia</value>
+  </data>
+  <data name="subpr_MinAge" xml:space="preserve">
+    <value>Edad mínima</value>
+  </data>
+  <data name="user_Blocked" xml:space="preserve">
+    <value>Bloqueado</value>
+  </data>
+  <data name="user_Email" xml:space="preserve">
+    <value>eMail</value>
+  </data>
+  <data name="user_FailedAttempts" xml:space="preserve">
+    <value>Intentos Fallidos</value>
+  </data>
+  <data name="user_FirstName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="user_LastName" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="user_Phone" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="user_PwdExpDate" xml:space="preserve">
+    <value>Vigencia Password</value>
+  </data>
+  <data name="user_Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="prod_DivDuration" xml:space="preserve">
+    <value>Vigencia Dividendos</value>
+  </data>
+  <data name="prod_MaxProd" xml:space="preserve">
+    <value>Cantidad Permitida</value>
+  </data>
+  <data name="prod_MemberFeeExon" xml:space="preserve">
+    <value>Exoneración Membresía</value>
+  </data>
+  <data name="prod_PaymentExon" xml:space="preserve">
+    <value>Exoneración Cuota</value>
+  </data>
+  <data name="prod_Provider" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="prod_WebViewable" xml:space="preserve">
+    <value>Visible en Website</value>
+  </data>
+  <data name="benefit" xml:space="preserve">
+    <value>Beneficio</value>
+  </data>
+  <data name="product" xml:space="preserve">
+    <value>Producto</value>
+  </data>
+  <data name="prod_MaxDividends" xml:space="preserve">
+    <value>Dividendo Máximo</value>
+  </data>
+  <data name="prod_MinDividends" xml:space="preserve">
+    <value>Dividendo Mínimo</value>
+  </data>
+  <data name="prod_PaymentFreqInterannual" xml:space="preserve">
+    <value>Interanual</value>
+  </data>
+  <data name="prod_PaymentFreqOnce" xml:space="preserve">
+    <value>Único</value>
+  </data>
+  <data name="prod_ValidityEnd" xml:space="preserve">
+    <value>Vigente Hasta</value>
+  </data>
+  <data name="subproduct" xml:space="preserve">
+    <value>Subproducto</value>
+  </data>
+</root>

@@ -1,0 +1,171 @@
+﻿@model CCCore.Models.mProduct
+
+@{
+    ViewBag.Title = "Planes de Afiliación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> pfOptions = new List<SelectListItem>();
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqMonthly, Value = "1" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqBimonthly, Value = "2" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqQuarter, Value = "3" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqTriannual, Value = "4" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqBiannual, Value = "6", Selected = true });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqAnnual, Value = "12" });
+
+    List<SelectListItem> prStatus = new List<SelectListItem>();
+    prStatus.Add(new SelectListItem { Text = "Activo", Value = "0" });
+    prStatus.Add(new SelectListItem { Text = "Suspendido", Value = "1" });
+}
+
+@using CCCore.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink(" " + CCResources.loc_Start, "Index", "Home", new { @class = "fa fa-dashboard" })</li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            @Html.Label(CCResources.prod_Name, htmlAttributes: new { @class = "control-label h6"})
+                            @Html.EditorFor(model => model.mProduct_Name, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-transform:uppercase ;" } })
+                            @Html.ValidationMessageFor(model => model.mProduct_Name, "", new { @class = "text-danger" })
+                        </div> 
+                        <div class="col-md-3">
+                            @Html.Label(CCResources.prod_MembershipFee, htmlAttributes: new { @class = "control-label h6" })
+                            @Html.EditorFor(model => model.mProduct_MembershipUniqueFee, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                            @Html.ValidationMessageFor(model => model.mProduct_MembershipUniqueFee, "", new { @class = "text-danger" })
+                        </div> 
+                        <div class="col-md-3">
+                            @Html.Label(CCResources.prod_PaymentFee, htmlAttributes: new { @class = "control-label h6" })
+                            @Html.EditorFor(model => model.mProduct_PaymentAmount, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                            @Html.ValidationMessageFor(model => model.mProduct_PaymentAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Html.Label(CCResources.prod_EarnedDividends, htmlAttributes: new { @class = "control-label h6" })
+                            @Html.EditorFor(model => model.mProduct_EarnedDividends, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                            @Html.ValidationMessageFor(model => model.mProduct_EarnedDividends, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.Label(CCResources.prod_PaymentFreq, htmlAttributes: new { @class = "control-label h6" })
+                            @Html.DropDownListFor(model => model.mProduct_PaymentFrequency, pfOptions, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.mProduct_PaymentFrequency, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.Label(CCResources.prod_Validity, htmlAttributes: new { @class = "control-label h6" })
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right input-daterange input-sm" id="ProdDateRange">
+                            </div><!-- /.input group -->
+                        </div><!-- /.form group -->
+                        @*<div class="col-md-3">
+                            @Html.LabelFor(model => model.mProduct_StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.mProduct_StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.mProduct_StartDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.mProduct_EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.mProduct_EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.mProduct_EndDate, "", new { @class = "text-danger" })
+                        </div>*@
+                        <div class="col-md-2">
+                            @Html.Label(CCResources.prod_Status, htmlAttributes: new { @class = "control-label h6" })
+                            @Html.DropDownListFor(model => model.mProduct_Status, prStatus, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                            @Html.ValidationMessageFor(model => model.mProduct_Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+               </div> 
+               <div class="box-footer">
+                    @Html.ActionLink(" " + CCResources.gen_Save, "Create", null, new { @class = "btn btn-twitter fa fa-floppy-o" })
+                    @Html.ActionLink(" " + CCResources.gen_Back, "Index", null, new { @class = "btn btn-twitter fa fa-caret-square-o-left" })
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>
+@*<div class="form-horizontal">
+        <h4>mProduct</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.mProduct_CreationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mProduct_CreationDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mProduct_CreationDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mProduct_StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mProduct_StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mProduct_StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mProduct_EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mProduct_EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mProduct_EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mProduct_MaxProductAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mProduct_MaxProductAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mProduct_MaxProductAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mProduct_Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mProduct_Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mProduct_Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SECUSer_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SECUSer_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SECUSer_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>*@
+
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/daterangepicker")
+@Scripts.Render("~/bundles/datepicker")
+
+<script>
+    $(function () {
+        //Date range picker
+        $('#ProdDateRange').daterangepicker();
+    });
+</script>

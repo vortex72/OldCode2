@@ -1,0 +1,188 @@
+﻿@model eClub.Models.mProduct
+
+@{
+    ViewBag.Title = Model.mProduct_Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> pfOptions = new List<SelectListItem>();
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqOnce, Value = "0" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqMonthly, Value = "1" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqBimonthly, Value = "2" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqQuarter, Value = "3" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqTriannual, Value = "4" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqBiannual, Value = "6", Selected = true });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqAnnual, Value = "12" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqInterannual, Value = "24" });
+
+    List<SelectListItem> prStatus = new List<SelectListItem>();
+    prStatus.Add(new SelectListItem { Text = "Activo", Value = "0" });
+    prStatus.Add(new SelectListItem { Text = "Suspendido", Value = "1" });
+
+    List<SelectListItem> prProvider = new List<SelectListItem>();
+    prProvider.Add(new SelectListItem { Text = "CardClub", Value = "0" });
+    prProvider.Add(new SelectListItem { Text = "Otro", Value = "1" });
+}
+
+@using eClub.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home")" class="fa fa-dashboard"> @CCResources.loc_Start</a></li>
+            <li><a href="@Url.Action("Index", "mProducts")"> @CCResources.product</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        @using (Html.BeginForm("Edit", "mProducts", FormMethod.Post, new { id = Model.mProduct_ID }))
+        {
+            <div class="row">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_Name, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mProduct_Name, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-transform:uppercase ;" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_Provider, htmlAttributes: new { @class = "control-label h6" })<br />
+                                @Html.DropDownListFor(model => model.mProvider_ID, prProvider, new { htmlAttributes = new { @class = "form-control dropdown" } })
+                                @Html.ValidationMessageFor(model => model.mProvider_ID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_Status, htmlAttributes: new { @class = "control-label h6" })<br />
+                                @Html.DropDownListFor(model => model.mProduct_Status, prStatus, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_Status, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_PaymentFreq, htmlAttributes: new { @class = "control-label h6" })<br />
+                                @Html.DropDownListFor(model => model.dPaymentFrequency_ID, pfOptions, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.dPaymentFrequency_ID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_MaxProd, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mProduct_MaxProductAmount, new { htmlAttributes = new { @class = "form-control input-sm allownumericwithoutdecimal", @style = "text-align:right", @id = "MaxProduct" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_MaxProductAmount, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(" ", htmlAttributes: new { @class = "control-label h6" }) <br />
+                                @Html.CheckBoxFor(model => model.mProduct_WebViewable.Value, new { htmlAttributes = new { @class = "form-control icheckbox_flat" } })
+                                @Html.Label("   " + CCResources.prod_WebViewable, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.ValidationMessageFor(model => model.mProduct_WebViewable, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_MembershipFee, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mProduct_MembershipUniqueFee, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-align:right", @id = "MembershipFee" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_MembershipUniqueFee, "", new { @class = "text-danger" })
+                            </div>                      
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_MemberFeeExon, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mProduct_MembershipUniqueFeeExoneration, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-align:right", @id = "MembershipEx" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_PaymentAmount, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_PaymentFee, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mProduct_PaymentAmount, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-align:right", @id = "PaymentFee" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_PaymentAmount, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_PaymentExon, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mProduct_PaymentAmountExoneration, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-align:right", @id = "PaymentEx" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_PaymentAmountExoneration, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_EarnedDividends, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mProduct_EarnedDividends, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-align:right", @id = "Dividends" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_EarnedDividends, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_DivDuration, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.DropDownListFor(model => model.mProduct_DividendsDuration, pfOptions, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_DividendsDuration, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_MinDividends, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mProduct_MinDividends, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-align:right", @id = "MinDividends" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_MinDividends, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_MaxDividends, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mProduct_MaxDividends, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-align:right", @id = "MaxDividends" } })
+                                @Html.ValidationMessageFor(model => model.mProduct_MaxDividends, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_ValidityStart, htmlAttributes: new { @class = "control-label h6" })
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input type="text" class="form-control pull-right datepicker-dropdown" id="ProdStartDate" readonly="readonly">
+                                </div><!-- /.input group -->
+                            </div><!-- /.form group -->
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_ValidityEnd, htmlAttributes: new { @class = "control-label h6" })
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input type="text" class="form-control pull-right datepicker-dropdown" id="ProdEndDate" readonly="readonly">
+                                </div><!-- /.input group -->
+                            </div><!-- /.form group -->
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                            @Html.AntiForgeryToken();
+                            <button type="submit" name="btnEdit" class="btn btn-twitter fa fa-pencil-square-o"> @CCResources.gen_Save</button>
+                            @Html.ActionLink(" " + CCResources.gen_Back, "Index", null, new { @class = "btn btn-twitter fa fa-caret-square-o-left" })
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+</aside>
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/datepicker")
+@Scripts.Render("~/bundles/autonumeric")
+
+<script>
+    $(function () {
+        //Date picker
+        $('#ProdStartDate').datepicker({language:'es'});
+        $('#ProdEndDate').datepicker({ language: '@System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat' });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $.extend($.fn.autoNumeric.defaults, {
+            aSep: '@System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberGroupSeparator',
+            aDec: '@System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator'
+        });
+    });
+
+    $(function() {
+        $('#MembershipFee').autoNumeric('init', { wEmpty: 'zero' });
+        $('#MembershipEx').autoNumeric('init', { wEmpty: 'zero' });
+        $('#PaymentFee').autoNumeric('init', { wEmpty: 'zero' });
+        $('#PaymentEx').autoNumeric('init', { wEmpty: 'zero' });
+        $('#Dividends').autoNumeric('init', { wEmpty: 'zero' });
+        $('#MinDividends').autoNumeric('init', { wEmpty: 'zero' });
+        $('#MaxDividends').autoNumeric('init', { wEmpty: 'zero' });
+    });
+
+    $(".allownumericwithoutdecimal").on("keypress keyup blur", function (event) {
+        $(this).val($(this).val().replace(/^([^\d]|0)[^\d].+|[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57) && event.which != 8 && event.which != 46) {
+            event.preventDefault();
+        }
+    });
+</script>

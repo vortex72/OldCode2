@@ -1,0 +1,114 @@
+﻿@model eClub.Models.Benefit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Benefit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProvider_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProvider_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_StartPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_StartPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_TopBenefitByPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_TopBenefitByPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_BenefitUseFrequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_BenefitUseFrequency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_EarnedDividends)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_EarnedDividends)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_DividendsDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_DividendsDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_DividendsMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_DividendsMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mBenefit_DividendsMin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mBenefit_DividendsMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dBenefitsStatus_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dBenefitsStatus_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SECUser_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SECUser_ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mBenefit_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

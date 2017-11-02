@@ -1,0 +1,42 @@
+﻿@model eClub.Models.AppScreen
+
+@{
+    ViewBag.Title = "Eliminar Pantalla";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+<div>
+    <h2>Eliminar Pantalla</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Nombre de Pantalla")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScreenName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Archivo de Pantalla")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScreenFile)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <h3>Are you sure you want to delete this?</h3>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Borrero" class="btn btn-default" />   |
+                @Html.ActionLink("Regresar a la lista", "Index")
+            </div>
+        </div>
+    }
+</div>

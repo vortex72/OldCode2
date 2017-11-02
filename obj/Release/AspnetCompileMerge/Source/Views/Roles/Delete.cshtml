@@ -1,0 +1,44 @@
+﻿@model CCCore.Models.RoleViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<hr />
+
+<div>
+    <h2>Eliminar Rol</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Nombre del Rol")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Descripción")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+       @Html.AntiForgeryToken()
+
+        <h3>¿Está Seguro de Eliminar este Rol?</h3>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Eliminar" class="btn btn-default" />   |
+                @Html.ActionLink("Volver a la Lista", "Index")
+            </div>
+        </div>
+        
+    }
+</div>

@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+}
+
+@using CCCore.Models
+@model LoginViewModel
+
+@using CCCore.L10nResources
+
+<!DOCTYPE html>
+<html class="login" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Club | Acceso</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    @Styles.Render("~/Content/css/bootstrap")
+    @Styles.Render("~/Content/css/CCCore")
+
+</head>
+<body>
+    <div class="form-box" id="login-box">
+        <section id="loginForm">
+            <div class="header">
+                <img src="@Url.Content("~/Content/img/LogoCardClubWeb_drupal_5.png")" alt="logo" style="vertical-align:central; margin-top: 0; margin-bottom: 0" />
+            </div>
+            <form action=@Url.Action("Index", "Home") method="post">
+                <div class="body">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label(@CCResources.login_Username)
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label(@CCResources.login_Password)
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div>@Html.ActionLink(@CCResources.login_ForgotPassword, "ForgotPassword")</div>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.Label(CCResources.login_Rememberme)
+                        </div>
+                </div>
+                <div class="footer">
+                    <button type="submit" class="btn btn-twitter fa fa-lock"> @CCResources.gen_Enter</button>
+                </div>
+            </form>
+        </section>
+    </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/backstretch")
+    <script>
+        $.backstretch([
+            "@Url.Content("~/Content/img/1.jpg")",
+            "@Url.Content("~/Content/img/2.jpg")",
+            "@Url.Content("~/Content/img/3.jpg")",
+            "@Url.Content("~/Content/img/4.jpg")",
+        ], {
+            fade: 1500,
+            duration: 12000
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,141 @@
+﻿@model IEnumerable<eClub.Models.Client>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_IdentityCardNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_MidleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_MaidenName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_BornDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_ChildrenNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_SendSMS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_SendEMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dGender_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dClientStatus_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dCitizenship_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dMaritalStatus_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dOccupation_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dClientIncomeRange_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dClientSource_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mClient_FirstContactDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dClientOriginalContact_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SECUser_ID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_IdentityCardNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_MidleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_MaidenName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_BornDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_ChildrenNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_SendSMS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_SendEMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dGender_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dClientStatus_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dCitizenship_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dMaritalStatus_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dOccupation_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dClientIncomeRange_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dClientSource_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mClient_FirstContactDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dClientOriginalContact_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SECUser_ID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.mClient_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.mClient_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mClient_ID })
+        </td>
+    </tr>
+}
+
+</table>

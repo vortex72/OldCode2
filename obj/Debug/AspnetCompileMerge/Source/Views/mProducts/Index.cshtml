@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CCCore.Models.mProduct>
+
+@{
+    ViewBag.Title = "Planes de Afiliación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="#">Productos</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        @*<div class="row">
+            <div class="col-xs-12">
+                <p>
+                    @Html.ActionLink("Nuevo Plan", "Create")
+                </p>
+            </div>
+        </div>*@
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Planes</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="plans" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Membresía</th>
+                                    <th>Frecuencia de Pago (Meses)</th>
+                                    <th>Cuota</th>
+                                    <th>Dividendos</th>
+                                    <th>Activo</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.mProduct_Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.mProduct_MembershipUniqueFee)</td>
+                                        @*<td>@Html.DisplayFor(modelItem => item.mProduct_MembershipUniqueFeeExoneration)</td>*@
+                                        <td>@Html.DisplayFor(modelItem => item.mProduct_PaymentFrequency)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.mProduct_PaymentAmount)</td>
+                                        @*<td>@Html.DisplayFor(modelItem => item.mProduct_PaymentAmountExoneration)</td>*@
+                                        @*<td>@Html.DisplayFor(modelItem => item.mProduct_CreationDate)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.mProduct_StartDate)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.mProduct_EndDate)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.mProduct_MaxProductAmount)</td>*@
+                                        <td>@Html.DisplayFor(modelItem => item.mProduct_EarnedDividends)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.mProduct_Status)</td>
+                                        @*<td>@Html.DisplayFor(modelItem => item.SECUSer_ID)</td>*@
+                                        <td>
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.mProduct_ID }) |
+                                            @Html.ActionLink("Eliminar", "Delete", new { id = item.mProduct_ID })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>
+
+@Scripts.Render("~/bundles/datatables")
+<script type="text/javascript">
+            $(function() {
+                $('#plans').dataTable({
+                    "bPaginate": true,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": true,
+                    "bAutoWidth": false
+                });
+            });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("li").removeClass("active");
+        $("#tables").addClass("active");
+        $("#tables_menu").css("display", "block");
+        $("#tables_datatables").addClass("active");
+        $("#tables_arrow").addClass("fa-angle-down");
+    });
+</script>

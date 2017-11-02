@@ -1,0 +1,82 @@
+﻿@model eClub.Models.LeadsModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LeadsModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mReferred_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mReferred_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mReferred_FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mReferred_FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mReferred_LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mReferred_LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mReferred_Phone1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mReferred_Phone1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mReferred_Phone2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mReferred_Phone2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mReferred_Phone3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mReferred_Phone3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mReferred_BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mReferred_BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mReferred_Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mReferred_Comments)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mClient_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

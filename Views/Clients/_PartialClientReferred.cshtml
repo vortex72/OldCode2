@@ -1,0 +1,134 @@
+﻿@model eClub.Models.LeadsModel
+
+@{
+    var now = DateTime.Now;
+    var lYearsAgo = Enumerable.Range(18, 89).Select(x => new SelectListItem { Value = (now.Year - x).ToString(), Text = (now.Year - x).ToString() });
+    var lYearsForward = Enumerable.Range(0, 12).Select(x => new SelectListItem { Value = (now.Year + x).ToString(), Text = (now.Year + x).ToString() });
+    var lMonths = Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString("00"), Value = x.ToString() });
+    var lDays = Enumerable.Range(1, 31).Select(x => new SelectListItem { Text = x.ToString("00"), Value = x.ToString() });
+}
+
+@using eClub.L10nResources
+@using eClub.Models
+
+<div class="row">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.Label(CCResources.prod_Name, htmlAttributes: new { @class = "control-label h6" })
+                    @Html.EditorFor(model => model.mReferred_FirstName, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-transform: uppercase", @maxlength = "30" } })
+                    @Html.ValidationMessageFor(model => model.mReferred_FirstName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    @Html.Label("Apellido", htmlAttributes: new { @class = "control-label h6" })
+                    @Html.EditorFor(model => model.mReferred_LastName, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-transform: uppercase", @maxlength = "30" } })
+                    @Html.ValidationMessageFor(model => model.mReferred_LastName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    @Html.Label("Teléfono 1", htmlAttributes: new { @class = "control-label h6" })<br />
+                    @Html.EditorFor(model => model.mReferred_Phone1, new { htmlAttributes = new { @class = "form-control input-sm allownumericwithoutdecimal", @style = "text-align:left", @maxlength = "20" } })
+                    @Html.ValidationMessageFor(model => model.mReferred_Phone1, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    @Html.Label("Teléfono 2", htmlAttributes: new { @class = "control-label h6" })<br />
+                    @Html.EditorFor(model => model.mReferred_Phone1, new { htmlAttributes = new { @class = "form-control input-sm allownumericwithoutdecimal", @style = "text-align:left", @maxlength = "20" } })
+                    @Html.ValidationMessageFor(model => model.mReferred_Phone2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    @Html.Label("Correo Electrónico", htmlAttributes: new { @class = "control-label h6" })<br />
+                    @Html.EditorFor(model => model.mReferred_eMail, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                    @Html.ValidationMessageFor(model => model.mReferred_eMail, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    @Html.Label("Sexo", htmlAttributes: new { @class = "control-label h6" })<br />
+                    @Html.DropDownListFor(model => model.dGender_ID, 
+                                            new SelectList((IEnumerable<DescriptionTables>)System.Web.HttpContext.Current.Items["dGender"], "DescTableID", "DescTableSpanish"), 
+                                            "SELECCIONE")
+                    @Html.ValidationMessageFor(model => model.dGender_ID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    @Html.Label("Estado Civil", htmlAttributes: new { @class = "control-label h6" })<br />
+                    @Html.DropDownListFor(model => model.dMaritalStatus_ID, 
+                                            new SelectList((IEnumerable<DescriptionTables>)System.Web.HttpContext.Current.Items["dMaritalStatus"], "DescTableID", "DescTableSpanish"), 
+                                            "SELECCIONE")
+                    @Html.ValidationMessageFor(model => model.dMaritalStatus_ID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    @Html.Label("Fecha de Nacimiento", htmlAttributes: new { @class = "control-label h6" })<br />
+                    @Html.DropDownList("RBDayYear", lYearsAgo, "Año", new { onchange = "monthOrYearChanged('RBDayYear', 'RBDayMonth', 'RBDayDay')" })
+                    @Html.DropDownList("RBDayMonth", lMonths, "Mes", new { onchange = "monthOrYearChanged('RBDayYear', 'RBDayMonth', 'RBDayDay')" })
+                    @Html.DropDownList("RBDayDay", lDays, "Día")
+                </div>
+             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.Label("Comentarios", htmlAttributes: new { @class = "control-label h6" })<br />
+                    @Html.TextAreaFor(model => model.mReferred_Comments, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jqueryval")
+
+
+<script>
+    $(".allownumericwithoutdecimal").on("keypress keyup blur", function (event) {
+        $(this).val($(this).val().replace(/^([^\d]|0)[^\d].+|[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57) && event.which != 8 && event.which != 46) {
+            event.preventDefault();
+        }
+    });
+
+    function monthOrYearChanged(yearId, monthId, dayId) {
+        dayId = "#" + dayId;
+        monthId = "#" + monthId;
+        yearId = "#" + yearId;
+        var currentMonth = $(monthId).val();
+        var currentDay = $(dayId).val();
+
+        // Set the numbers of days in the day dropdown
+        changeDayCount = function (numDays) {
+            while ($(dayId).children().length > numDays) {
+                $(dayId + " option:last").remove();
+            }
+            while ($(dayId).children().length < numDays) {
+                $(dayId).append($("<option></option>").attr(
+                    "value",
+                    $(dayId).children().length + 1).text($(dayId).children().length + 1));
+            }
+        };
+
+        // Adjust number of days based on month and year
+        switch (currentMonth) {
+            case "4":
+            case "6":
+            case "9":
+            case "11":
+                changeDayCount(30);
+                break;
+            case "2":
+                var currentYear = $(yearId).val();
+                // Check for leap year
+                if (currentYear % 400 == 0 ||
+                   (currentYear % 100 != 0 && currentYear % 4 == 0))
+                    changeDayCount(29);
+                else
+                    changeDayCount(28);
+                break;
+            default:
+                changeDayCount(31);
+        }
+
+        // Make sure the day value wasn't too high
+        if (currentDay > $(dayId).children().length)
+            $(dayId).val($(dayId).children().length);
+    }
+</script>

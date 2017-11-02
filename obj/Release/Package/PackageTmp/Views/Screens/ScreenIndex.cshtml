@@ -1,0 +1,39 @@
+﻿@model IEnumerable<eClub.Models.ScreenViewModel>
+
+@{
+    ViewBag.Title = "Application Screens";
+}
+
+<h2>Application Screens</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ScreenName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScreenFile)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScreenName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScreenFile)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ScreenName }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ScreenFile })
+            </td>
+        </tr>
+    }
+
+</table>

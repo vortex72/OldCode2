@@ -1,0 +1,66 @@
+﻿@model eClub.Models.mProduct
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.mProduct_Name;
+}
+
+@using eClub.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink(" " + CCResources.loc_Start, "Index", "Home", new { @class = "fa fa-dashboard" })</li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    @Html.ValidationSummary(true, "SE ELIMINARÁ EL SIGUIENTE REGISTRO", new { @class = "text-danger" })
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Html.Label(CCResources.prod_Name, htmlAttributes: new { @class = "control-label h6" }) <br />
+                            @Html.DisplayFor(model => model.mProduct_Name, new { htmlAttributes = new { @class = "form-control h5", @style = "text-transform:uppercase ;" } })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.Label(CCResources.prod_MembershipFee, htmlAttributes: new { @class = "control-label h6" }) <br />
+                            @Html.DisplayFor(model => model.mProduct_MembershipUniqueFee, new { htmlAttributes = new { @class = "form-control h5" } })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.Label(CCResources.prod_PaymentFee, htmlAttributes: new { @class = "control-label h6" }) <br />
+                            @Html.DisplayFor(model => model.mProduct_PaymentAmount, new { htmlAttributes = new { @class = "form-control h5" } })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.Label(CCResources.prod_EarnedDividends, htmlAttributes: new { @class = "control-label h6" }) <br />
+                            @Html.DisplayFor(model => model.mProduct_EarnedDividends, new { htmlAttributes = new { @class = "form-control h5" } })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.Label(CCResources.prod_PaymentFreq, htmlAttributes: new { @class = "control-label h6" }) <br />
+                            @Html.DisplayFor(model => model.mProduct_PaymentFrequency, new { htmlAttributes = new { @class = "form-control h5" } })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.Label(CCResources.prod_Status, htmlAttributes: new { @class = "control-label h6" }) <br />
+                            @Html.DisplayFor(model => model.mProduct_Status, new { htmlAttributes = new { @class = "form-control h5" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    @using (Html.BeginForm("Delete", "mProducts", FormMethod.Post, new { id = Model.mProduct_ID }))
+                        {
+                            @Html.AntiForgeryToken();
+                            <button type="submit" name="btnDelete" class="btn btn-twitter fa fa-trash"> @CCResources.gen_Delete</button>
+                            @Html.ActionLink(" " + CCResources.gen_Back, "Index", null, new { @class = "btn btn-twitter fa fa-caret-square-o-left" })
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>

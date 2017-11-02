@@ -1,0 +1,154 @@
+﻿@model eClub.Models.Benefit
+
+@{
+    ViewBag.Title = CCResources.benefit;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> pfOptions = new List<SelectListItem>();
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqOnce, Value = "0" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqMonthly, Value = "1" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqBimonthly, Value = "2" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqQuarter, Value = "3" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqTriannual, Value = "4" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqBiannual, Value = "6", Selected = true });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqAnnual, Value = "12" });
+    pfOptions.Add(new SelectListItem { Text = CCResources.prod_PaymentFreqInterannual, Value = "24" });
+
+    List<SelectListItem> prStatus = new List<SelectListItem>();
+    prStatus.Add(new SelectListItem { Text = "Activo", Value = "0" });
+    prStatus.Add(new SelectListItem { Text = "Suspendido", Value = "1" });
+
+    List<SelectListItem> prProvider = new List<SelectListItem>();
+    prProvider.Add(new SelectListItem { Text = "CardClub", Value = "0" });
+    prProvider.Add(new SelectListItem { Text = "Otro", Value = "1" });
+}
+
+@using eClub.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home")" class="fa fa-dashboard"> @CCResources.loc_Start</a></li>
+            <li><a href="@Url.Action("Index", "mSubProducts")"> @CCResources.benefit</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        @using (Html.BeginForm("Create", "Benefits", FormMethod.Post, new { benefit = Model }))
+        {
+            <div class="row">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.benefit, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mBenefit_Name, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-transform:uppercase ;" } })
+                                @Html.ValidationMessageFor(model => model.mBenefit_Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.prod_Provider, htmlAttributes: new { @class = "control-label h6" })<br />
+                                @Html.DropDownListFor(model => model.mProvider_ID, prProvider, new { htmlAttributes = new { @class = "form-control dropdown" } })
+                                @Html.ValidationMessageFor(model => model.mProvider_ID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-8">
+                                @Html.Label(CCResources.benefit_description, htmlAttributes: new { @class = "control-label h6" })<br />
+                                @Html.TextAreaFor(model => model.mBenefit_Description, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-transform:uppercase ;" } })
+                                @Html.ValidationMessageFor(model => model.mBenefit_Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.benefit_usefrequency, htmlAttributes: new { @class = "control-label h6" })<br />
+                                @Html.DropDownListFor(model => model.mBenefit_UseFrequency, pfOptions, new { htmlAttributes = new { @class = "form-control dropdown" } })
+                                @Html.ValidationMessageFor(model => model.mBenefit_UseFrequency, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.benefit_maxperperiod, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mBenefit_TopBenefitByPeriod, new { htmlAttributes = new { @class = "form-control allownumericwithoutdecimal", @style = "text - align:right"} })
+                                @Html.ValidationMessageFor(model => model.mBenefit_TopBenefitByPeriod, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.Label(CCResources.benefit_startperiod, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mBenefit_StartPeriod, new { htmlAttributes = new { @class = "form-control allownumericwithoutdecimal", @style = "text - align:right"} })
+                                @Html.ValidationMessageFor(model => model.mBenefit_StartPeriod, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Label(" ", htmlAttributes: new { @class = "control-label h6" }) <br />
+                                @Html.CheckBoxFor(model => model.mBenefit_WebViewable, new { htmlAttributes = new { @class = "form-control icheckbox_flat" } })
+                                @Html.Label("   " + CCResources.prod_WebViewable, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.ValidationMessageFor(model => model.mBenefit_WebViewable, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-md-3">
+                                @Html.Label(" ", htmlAttributes: new { @class = "control-label h6" }) <br />
+                                @Html.CheckBoxFor(model => model.mBenefit_Viewable, new { htmlAttributes = new { @class = "form-control icheckbox_flat" } })
+                                @Html.Label("   " + CCResources.prod_Viewable, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.ValidationMessageFor(model => model.mBenefit_WebViewable, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                @Html.Label(CCResources.benefit_dividends, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mBenefit_EarnedDividends, new { htmlAttributes = new { @class = "form-control allownumericwithoutdecimal", @style = "text - align:right", @id = "Divs" } })
+                                @Html.ValidationMessageFor(model => model.mBenefit_EarnedDividends, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Label(CCResources.benefit_dividendsduration, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mBenefit_DividendsDuration, new { htmlAttributes = new { @class = "form-control allownumericwithoutdecimal", @style = "text - align:right"} })
+                                @Html.ValidationMessageFor(model => model.mBenefit_DividendsDuration, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Label(CCResources.benefit_mindividens, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mBenefit_DividendsMin, new { htmlAttributes = new { @class = "form-control allownumericwithoutdecimal", @style = "text - align:right", @id = "MinDiv" } })
+                                @Html.ValidationMessageFor(model => model.mBenefit_DividendsMin, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Label(CCResources.benefit_maxdividens, htmlAttributes: new { @class = "control-label h6" })
+                                @Html.EditorFor(model => model.mBenefit_DividendsMax, new { htmlAttributes = new { @class = "form-control allownumericwithoutdecimal", @style = "text - align:right", @id = "MaxDiv" } })
+                                @Html.ValidationMessageFor(model => model.mBenefit_DividendsMin, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        @Html.AntiForgeryToken();
+                        <button type="submit" name="btnCreate" class="btn btn-twitter fa fa-pencil-square-o"> @CCResources.gen_Save</button>
+                        @Html.ActionLink(" " + CCResources.gen_Back, "Index", null, new { @class = "btn btn-twitter fa fa-caret-square-o-left" })
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+</aside>
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/autonumeric")
+
+<script>
+    $(document).ready(function () {
+        $.extend($.fn.autoNumeric.defaults, {
+            aSep: '@System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberGroupSeparator',
+            aDec: '@System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator'
+        });
+    });
+
+    $(function() {
+        $('#Divs').autoNumeric('init', { wEmpty: 'zero' });
+        $('#MaxDiv').autoNumeric('init', { wEmpty: 'zero' });
+        $('#MinDiv').autoNumeric('init', { wEmpty: 'zero' });
+    });
+
+    $(".allownumericwithoutdecimal").on("keypress keyup blur", function (event) {
+        $(this).val($(this).val().replace(/^([^\d]|0)[^\d].+|[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57) && event.which != 8 && event.which != 46) {
+            event.preventDefault();
+        }
+    });
+</script>

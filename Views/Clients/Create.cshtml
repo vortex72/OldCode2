@@ -1,0 +1,53 @@
+﻿@model eClub.Models.Client
+
+@{
+    ViewBag.Title = "Venta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using eClub.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home")" class="fa fa-dashboard"> @CCResources.loc_Start</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_1" data-toggle="tab">Cliente</a></li>
+                <li><a href="#tab_2" data-toggle="tab">Afiliación</a></li>
+                <li><a href="#tab_3" data-toggle="tab">Direcciones</a></li>
+                <li><a href="#tab_4" data-toggle="tab">Referidos</a></li>
+                <li class="pull-right"><a href="#">@CCResources.gen_Save <i class="fa fa-floppy-o"></i></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+                    @Html.Partial("_PartialClientMain")
+                </div>
+                <div class="tab-pane" id="tab_2">
+
+                </div>
+                <div class="tab-pane" id="tab_3">
+                </div>
+                <div class="tab-pane" id="tab_4">
+                    @{ 
+                        if (Model.Leads == null) {
+                            Model.Leads = new eClub.Models.LeadsModel();
+                        }
+                        Html.RenderPartial("_PartialClientReferred", Model.Leads); }
+                </div>
+                <div class="tab-pane active" id="tab_5">
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>
+
+@Scripts.Render("~/bundles/jqueryval")

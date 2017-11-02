@@ -1,0 +1,35 @@
+﻿@model CCCore.Models.AppScreen
+
+@{
+    ViewBag.Title = "Detalles de Pantalla";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AppScreen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ScreenName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScreenName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScreenFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScreenFile)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ScreenID }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

@@ -1,0 +1,15 @@
+﻿@{
+    if (ViewContext.RouteData.Values["action"].ToString() != "_Login")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Home/_Login.cshtml";
+    }
+
+    if (!Request["lang"].IsEmpty())
+    {
+        Culture = UICulture = Request["lang"];
+    }
+}

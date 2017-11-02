@@ -1,0 +1,84 @@
+﻿@model eClub.Models.RoleViewModel
+
+@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var grid = new WebGrid(Model.RoleScreens, null, null, 15);
+}
+
+@using eClub.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink(" " + CCResources.loc_Start, "Index", "Home", new { @class = "fa fa-dashboard" })</li>
+            <li><a href="#">Configuración</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        @using (Html.BeginForm("Edit", "Roles", FormMethod.Post, new { id = Model.RoleName }))
+        {
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">@Model.RoleName</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive">
+                    @Html.ValidationSummary(true)
+                    @*Hide the original name away for later:*@
+                    @Html.HiddenFor(model => model.RoleName)
+                    <div class="col-md-3">
+                        @Html.Label(CCResources.role_Name, htmlAttributes: new { @class = "control-label h6" })
+                        @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-transform:uppercase ;" } })
+                        @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-9">
+                        @Html.Label(CCResources.role_Description, htmlAttributes: new { @class = "control-label h6" })
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-transform:uppercase ;" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="box-body table-responsive">
+                        @Html.AntiForgeryToken()
+                        @grid.GetHtml(
+                     tableStyle: "webgrid-table",
+                     headerStyle: "webgrid-header",
+                     footerStyle: "webgrid-footer",
+                     alternatingRowStyle: "webgrid-alternating-row",
+                     selectedRowStyle: "webgrid-selected-row",
+                     rowStyle: "webgrid-row-style",
+                     caption: "Permisos",
+                     mode: WebGridPagerModes.All,
+                     columns:
+                         grid.Columns(
+                                 grid.Column("ScreenName",
+                                             "Módulo",
+                                             format: (item) => item.ScreenName, style: "col-md-3"),
+                                 grid.Column("CanQuery",
+                                             "Consultar",
+                                             format: @<text><input name="QueryChkBx" type="checkbox" /></text>),
+                                 grid.Column("CanPrint",
+                                             "Imprimir",
+                                             format: @<text><input name="PrintChkBx" type="checkbox" /></text>),
+                                 grid.Column("CanModify",
+                                             "Editar",
+                                             format: @<text><input name="ModifyChkBx" type="checkbox" /></text>),
+                                 grid.Column("CanDelete",
+                                             "Borrar",
+                                             format: @<text><input name="DeleteChkBx" type="checkbox" /></text>)
+                         )
+                 )
+                    </div>
+                </div>
+                <div class="box-footer">
+                    @Html.AntiForgeryToken();
+                    <button type="submit" name="btnSave" class="btn btn-twitter fa fa-disk"> @CCResources.gen_Save</button>
+                    @Html.ActionLink(" " + CCResources.gen_Back, "Index", null, new { @class = "btn btn-twitter fa fa-caret-square-o-left" })
+                </div>
+            </div>
+        }
+    </section>
+</aside>

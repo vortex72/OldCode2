@@ -1,0 +1,79 @@
+﻿@model IEnumerable<eClub.Models.Benefit>
+
+@{
+    ViewBag.Title = CCResources.benefit;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var grid = new WebGrid(Model, null, null, 15);
+}
+
+@using eClub.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home")" class="fa fa-dashboard"> @CCResources.loc_Start</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header">
+            </div>
+            <div class="box-body table-responsive">
+                @Html.AntiForgeryToken()
+                @grid.GetHtml(
+                        tableStyle: "webgrid-table",
+                        headerStyle: "webgrid-header",
+                        footerStyle: "webgrid-footer",
+                        alternatingRowStyle: "webgrid-alternating-row",
+                        selectedRowStyle: "webgrid-selected-row",
+                        rowStyle: "webgrid-row-style",
+                        mode: WebGridPagerModes.All,
+                        columns:
+                            grid.Columns(
+                                    grid.Column("BenefitName",
+                                                CCResources.benefit,
+                                                format: (item) => item.mBenefit_Name),
+                                    grid.Column("BenefitDescription",
+                                                CCResources.benefit_description,
+                                                format: (item) => item.mBenefit_Description),
+                                    grid.Column("BenefitStartPeriod",
+                                                CCResources.benefit_startperiod,
+                                                format: (item) => item.mBenefit_StartPeriod),
+                                    grid.Column("BenefitTopBenefitByPeriod",
+                                                CCResources.benefit_maxperperiod,
+                                                format: (item) => item.mBenefit_TopBenefitByPeriod),
+                                    grid.Column("BenefitUseFrequency",
+                                                CCResources.benefit_usefrequency,
+                                                format: (item) => item.mBenefit_UseFrequency),
+                                    grid.Column("BenefitEarnedDividends",
+                                                CCResources.benefit_dividends,
+                                                format: (item) => item.mBenefit_EarnedDividends.ToString("f")),
+                                     grid.Column("BenefitDividendsMax",
+                                                CCResources.benefit_maxdividens,
+                                                format: (item) => item.mBenefit_DividendsMax.ToString("f")),
+                                    grid.Column("BenefitDividendsMin",
+                                                CCResources.benefit_mindividens,
+                                                format: (item) => item.mBenefit_DividendsMin.ToString("f")),
+                                    grid.Column("Status",
+                                                CCResources.prod_Status,
+                                                format: (item) => item.mBenefit_Status),
+                                    grid.Column("Action", " ", format: @<text>
+                                    @Html.ActionLink(" ", "Edit", null, new { id = item.mSubProduct_Id }, new { @class = "btn btn-twitter fa fa-pencil-square-o" })
+                                    @Html.ActionLink(" ", "Delete", null, new { id = item.mSubProduct_Id }, new { @class = "btn btn-twitter fa fa-trash" })
+                                    </text>, canSort: false)
+                                )
+                        )
+            </div>
+            <div class="box-footer">
+                @Html.ActionLink(" " + CCResources.gen_Add, "Create", null, new { @class = "btn btn-twitter fa fa-plus-square" })
+                <a href="@Url.Action("Index", "Home")" class="btn btn-twitter fa fa-caret-square-o-left"> @CCResources.gen_Back</a>
+            </div>
+
+        </div>
+    </section>
+</aside>

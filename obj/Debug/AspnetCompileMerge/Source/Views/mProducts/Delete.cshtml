@@ -1,0 +1,129 @@
+﻿@model CCCore.Models.mProduct
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>mProduct</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_MembershipUniqueFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_MembershipUniqueFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_MembershipUniqueFeeExoneration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_MembershipUniqueFeeExoneration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_PaymentFrequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_PaymentFrequency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_PaymentAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_PaymentAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_PaymentAmountExoneration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_PaymentAmountExoneration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_MaxProductAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_MaxProductAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_EarnedDividends)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_EarnedDividends)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mProduct_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mProduct_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SECUSer_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SECUSer_ID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

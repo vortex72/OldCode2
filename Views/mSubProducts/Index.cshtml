@@ -1,0 +1,70 @@
+﻿@model IEnumerable<eClub.Models.mSubProduct>
+
+@{
+    ViewBag.Title = CCResources.subproduct;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var grid = new WebGrid(Model, null, null, 15);
+}
+
+@using eClub.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home")" class="fa fa-dashboard"> @CCResources.loc_Start</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header">
+            </div>
+            <div class="box-body table-responsive">
+                @Html.AntiForgeryToken()
+                @grid.GetHtml(
+                        tableStyle: "webgrid-table",
+                        headerStyle: "webgrid-header",
+                        footerStyle: "webgrid-footer",
+                        alternatingRowStyle: "webgrid-alternating-row",
+                        selectedRowStyle: "webgrid-selected-row",
+                        rowStyle: "webgrid-row-style",
+                        mode: WebGridPagerModes.All,
+                        columns:
+                            grid.Columns(
+                                    grid.Column("SubProductName",
+                                                CCResources.subpr_Name,
+                                                format: (item) => item.mSubProduct_Name),
+                                    grid.Column("Payment",
+                                                CCResources.subpr_PaymentAmt,
+                                                format: (item) => item.mSubProduct_PaymentAmount.ToString("f")),
+                                    grid.Column("PaymentAmt",
+                                                CCResources.subpr_PaymentExon,
+                                                format: (item) => item.mSubProduct_PaymentAmountExoneration.ToString("f")),
+                                    grid.Column("Dividends",
+                                                CCResources.subpr_Dividends,
+                                                format: (item) => item.mSubProduct_EarnedDividends.ToString("f")),
+                                    grid.Column("Beneficiaries",
+                                                CCResources.subpr_Beneficiaries,
+                                                format: @<text><input name="checkbox" type="checkbox" value="@item.mSubProduct_BeneficiariesAllowed" /></text>),
+                                    grid.Column("Status",
+                                                CCResources.prod_Status,
+                                                format: (item) => item.mSubProduct_Status),
+                                        grid.Column("Action", " ", format: @<text>
+                                        @Html.ActionLink(" ", "Edit", null, new { id = item.mSubProduct_Id }, new { @class = "btn btn-twitter fa fa-pencil-square-o" })
+                                        @Html.ActionLink(" ", "Delete", null, new { id = item.mSubProduct_Id }, new { @class = "btn btn-twitter fa fa-trash" })
+                                        </text>, canSort: false)
+                                )
+                        )
+            </div>
+            <div class="box-footer">
+                @Html.ActionLink(" " + CCResources.gen_Add, "Create", null, new { @class = "btn btn-twitter fa fa-plus-square" })
+                <a href="@Url.Action("Index", "Home")" class="btn btn-twitter fa fa-caret-square-o-left"> @CCResources.gen_Back</a>
+            </div>
+
+        </div>
+    </section>
+</aside>

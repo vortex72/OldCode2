@@ -1,0 +1,418 @@
+﻿@model eClub.Models.Client
+
+@{
+    ViewBag.Title = "Venta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> lYear = new List<SelectListItem>();
+    lYear.Add(new SelectListItem { Text = "2015", Value = "0" });
+    lYear.Add(new SelectListItem { Text = "2016", Value = "1" });
+    lYear.Add(new SelectListItem { Text = "2017", Value = "2" });
+    lYear.Add(new SelectListItem { Text = "2018", Value = "3" });
+    lYear.Add(new SelectListItem { Text = "2019", Value = "4" });
+    lYear.Add(new SelectListItem { Text = "2020", Value = "6" });
+    lYear.Add(new SelectListItem { Text = "2021", Value = "12" });
+
+    List<SelectListItem> lMonth = new List<SelectListItem>();
+    lMonth.Add(new SelectListItem { Text = "01", Value = "0" });
+    lMonth.Add(new SelectListItem { Text = "02", Value = "1" });
+    lMonth.Add(new SelectListItem { Text = "03", Value = "2" });
+    lMonth.Add(new SelectListItem { Text = "04", Value = "3" });
+    lMonth.Add(new SelectListItem { Text = "05", Value = "4" });
+    lMonth.Add(new SelectListItem { Text = "06", Value = "6" });
+    lMonth.Add(new SelectListItem { Text = "07", Value = "12" });
+    lMonth.Add(new SelectListItem { Text = "08", Value = "3" });
+    lMonth.Add(new SelectListItem { Text = "09", Value = "4" });
+    lMonth.Add(new SelectListItem { Text = "10", Value = "6" });
+    lMonth.Add(new SelectListItem { Text = "11", Value = "12" });
+    lMonth.Add(new SelectListItem { Text = "12", Value = "12" });
+
+    List<SelectListItem> lCard = new List<SelectListItem>();
+    lCard.Add(new SelectListItem { Text = "VISA", Value = "6" });
+    lCard.Add(new SelectListItem { Text = "MASTERCARD", Value = "12" });
+    lCard.Add(new SelectListItem { Text = "AMEX", Value = "12" });
+    lCard.Add(new SelectListItem { Text = "DINERS", Value = "12" });
+}
+
+@using eClub.L10nResources
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home")" class="fa fa-dashboard"> @CCResources.loc_Start</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_1" data-toggle="tab">Cliente</a></li>
+                <li><a href="#tab_2" data-toggle="tab">Afiliación</a></li>
+                <li><a href="#tab_3" data-toggle="tab">Direcciones</a></li>
+                <li><a href="#tab_4" data-toggle="tab">Referidos</a></li>
+                <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-floppy-o"></i></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_1">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="box box-primary">
+                                <div class="box-header with-border">Datos Personales
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            @Html.Label("Sexo", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            @Html.DropDownListFor(model => model.dGender_ID, new SelectList(Model.dGender, "DescTableID", "DescTableSpanish"))
+                                            @Html.ValidationMessageFor(model => model.dGender_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-2">
+                                            @Html.Label("Doc. Identidad", htmlAttributes: new { @class = "control-label h6" })
+                                            @Html.EditorFor(model => model.mClient_IdentityCardNumber, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                            @Html.ValidationMessageFor(model => model.mClient_IdentityCardNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.Label("Primer Nombre", htmlAttributes: new { @class = "control-label h6" })
+                                            @Html.EditorFor(model => model.mClient_FirstName, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                            @Html.ValidationMessageFor(model => model.mClient_FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.Label("Segundo Nombre", htmlAttributes: new { @class = "control-label h6" })
+                                            @Html.EditorFor(model => model.mClient_MidleName, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                            @Html.ValidationMessageFor(model => model.mClient_MidleName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.Label("Primer Apellido", htmlAttributes: new { @class = "control-label h6" })
+                                            @Html.EditorFor(model => model.mClient_LastName, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                            @Html.ValidationMessageFor(model => model.mClient_LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.Label("Segundo Apellido", htmlAttributes: new { @class = "control-label h6" })
+                                            @Html.EditorFor(model => model.mClient_MaidenName, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                            @Html.ValidationMessageFor(model => model.mClient_MaidenName, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("Nacimiento", htmlAttributes: new { @class = "control-label h6" })
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                                <input type="text" class="form-control pull-right datepicker-dropdown" id="BornDate" readonly="readonly">
+                                            </div><!-- /.input group -->
+                                        </div>
+                                        <div class="col-md-1">
+                                            @Html.Label("Hijos", htmlAttributes: new { @class = "control-label h6" })
+                                            @Html.EditorFor(model => model.mClient_ChildrenNumber, new { htmlAttributes = new { @class = "form-control input-sm allownumericwithoutdecimal", @style = "text-align:right", @id = "Children" } })
+                                            @Html.ValidationMessageFor(model => model.mClient_ChildrenNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            @Html.Label("Estado Civil", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            @Html.DropDownListFor(model => model.dMaritalStatus_ID, new SelectList(Model.dMaritalStatus, "DescTableID", "DescTableSpanish"))
+                                            @Html.ValidationMessageFor(model => model.dMaritalStatus_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-2">
+                                            @Html.Label("Nacionalidad", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            @Html.DropDownListFor(model => model.dCitizenship_ID, new SelectList(Model.dCitizenship, "DescTableID", "DescTableSpanish"))
+                                            @Html.ValidationMessageFor(model => model.dCitizenship_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("Ingresos", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            @Html.DropDownListFor(model => model.dClientIncomeRange_ID, new SelectList(Model.dIncomeRange, "DescTableID", "DescTableSpanish"))
+                                            @Html.ValidationMessageFor(model => model.dClientIncomeRange_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("Ocupación", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            @Html.DropDownListFor(model => model.dOccupation_ID, new SelectList(Model.dOccupation, "DescTableID", "DescTableSpanish"))
+                                            @Html.ValidationMessageFor(model => model.dOccupation_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-2">
+                                            @Html.Label("Origen", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            @Html.DropDownListFor(model => model.dClientSource_ID, new SelectList(Model.dClientSource, "DescTableID", "DescTableSpanish"))
+                                            @Html.ValidationMessageFor(model => model.dClientSource_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.Label(" ", htmlAttributes: new { @class = "control-label h6" }) <br />
+                                            @Html.CheckBoxFor(model => model.mClient_SendEMail, new { htmlAttributes = new { @class = "form-control icheckbox_flat" } })
+                                            @Html.Label(" Promociones por eMail", htmlAttributes: new { @class = "control-label h6" })
+                                            @Html.ValidationMessageFor(model => model.mClient_SendEMail, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label(" ", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            @Html.CheckBoxFor(model => model.mClient_SendSMS, new { htmlAttributes = new { @class = "form-control icheckbox_flat" } })
+                                            @Html.Label(" Promociones por SMS", htmlAttributes: new { @class = "control-label h6" })
+                                            @Html.ValidationMessageFor(model => model.mClient_SendSMS, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            @Html.Label("Correos del Cliente", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-facebook fa fa-plus-square" type="button"> </button>
+                                                </span>
+                                            </div><!-- /input-group --> <br />
+                                            @Html.ListBoxFor(model => model.mClientEmails, new SelectList(Model.dIncomeRange, "DescTableID", "DescTableSpanish"))<br />
+                                            @Html.ValidationMessageFor(model => model.dClientIncomeRange_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.Label("Teléfonos del Cliente", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-facebook fa fa-plus-square" type="button"> </button>
+                                                </span>
+                                            </div><!-- /input-group --> <br />
+                                            @Html.ListBoxFor(model => model.mClientPhoneNumbers,
+                                                                    new SelectList(Model.dIncomeRange, "DescTableID", "DescTableSpanish"),
+                                                                    new { htmlAttributes = new { @class = "col-md-12" } }) <br />
+                                            @Html.ValidationMessageFor(model => model.dClientIncomeRange_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="box box-primary">
+                                <div class="box-header with-border">Datos Tarjeta
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            @Html.Label("Tipo Tarjeta", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            @Html.DropDownList("Tarjeta", lCard)
+                                            @Html.ValidationMessageFor(model => model.dCitizenship_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.Label("Emisor", htmlAttributes: new { @class = "control-label h6" })<br />
+                                            @Html.DropDownListFor(model => model.dClientIncomeRange_ID, new SelectList(Model.dIncomeRange, "DescTableID", "DescTableSpanish"))
+                                            @Html.ValidationMessageFor(model => model.dClientIncomeRange_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @Html.Label("Número Tarjeta", htmlAttributes: new { @class = "control-label h6" })
+                                            @Html.EditorFor(model => model.mClient_ChildrenNumber, new { htmlAttributes = new { @class = "form-control input-sm allownumericwithoutdecimal", @style = "text-align:right", @id = "Children" } })
+                                            @Html.ValidationMessageFor(model => model.mClient_ChildrenNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @Html.Label("Nombre en la Tarjeta", htmlAttributes: new { @class = "control-label h6" }) <br />
+                                            @Html.TextBox("Nombre"," ", new { htmlAttributes = new { @class = "form-control input-sm", @style = "text-transform: uppercase" } })
+                                            @Html.ValidationMessageFor(model => model.mClient_ChildrenNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.Label("Mes Venc.", htmlAttributes: new { @class = "control-label h6" }) <br />
+                                            @Html.DropDownList("Año",lYear)
+                                            @Html.ValidationMessageFor(model => model.dOccupation_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.Label("Año Venc.", htmlAttributes: new { @class = "control-label h6" }) <br />
+                                            @Html.DropDownList("Mes",lMonth)
+                                            @Html.ValidationMessageFor(model => model.dClientSource_ID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane active" id="tab_2">
+
+                </div>
+                <div class="tab-pane active" id="tab_3">
+                </div>
+                <div class="tab-pane active" id="tab_4">
+                </div>
+                <div class="tab-pane active" id="tab_5">
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/datepicker")
+@Scripts.Render("~/bundles/autonumeric")
+
+<script>
+    $(function () {
+        //Date picker
+        $('#BornDate').datepicker({language:'es'});
+    });
+
+    $(document).ready(function () {
+        $.extend($.fn.autoNumeric.defaults, {
+            aSep: '@System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberGroupSeparator',
+            aDec: '@System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator'
+        });
+    });
+
+    $(function () {
+        $('#Children').autoNumeric('init', { wEmpty: 'zero' });
+    });
+
+    $(".allownumericwithoutdecimal").on("keypress keyup blur", function (event) {
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57) && event.which != 8 && event.which != 46) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+@* <div class="col-md-2">
+        @Html.LabelFor(model => model.dClientStatus_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.dClientStatus_ID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dClientStatus_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.dOccupation_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.dOccupation_ID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dOccupation_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.dClientSource_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.dClientSource_ID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dClientSource_ID, "", new { @class = "text-danger" })
+        </div>
+    </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                <h4>Client</h4>
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                
+
+                                
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.mClient_SendSMS, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <div class="checkbox">
+                                            @Html.EditorFor(model => model.mClient_SendSMS)
+                                            @Html.ValidationMessageFor(model => model.mClient_SendSMS, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.mClient_SendEMail, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <div class="checkbox">
+                                            @Html.EditorFor(model => model.mClient_SendEMail)
+                                            @Html.ValidationMessageFor(model => model.mClient_SendEMail, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dClientStatus_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.dClientStatus_ID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.dClientStatus_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                               
+
+                                
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dOccupation_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.dOccupation_ID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.dOccupation_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dClientSource_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.dClientSource_ID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.dClientSource_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.mClient_FirstContactDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.mClient_FirstContactDate, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.mClient_FirstContactDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dClientOriginalContact_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.dClientOriginalContact_ID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.dClientOriginalContact_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+      *@                         

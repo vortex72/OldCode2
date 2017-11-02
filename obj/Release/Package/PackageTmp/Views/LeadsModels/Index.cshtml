@@ -1,0 +1,75 @@
+﻿@model IEnumerable<eClub.Models.LeadsModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mReferred_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mReferred_FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mReferred_LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mReferred_Phone1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mReferred_Phone2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mReferred_Phone3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mReferred_BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mReferred_Comments)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mReferred_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mReferred_FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mReferred_LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mReferred_Phone1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mReferred_Phone2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mReferred_Phone3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mReferred_BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mReferred_Comments)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.mClient_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.mClient_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mClient_ID })
+        </td>
+    </tr>
+}
+
+</table>

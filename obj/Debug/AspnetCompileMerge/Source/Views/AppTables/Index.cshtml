@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CCCore.Models.AppTables>
+
+@{
+    ViewBag.Title = "Tablas de Descriptores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<aside class="right-side">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="#">Configuración</a></li>
+            <li class="active">@ViewBag.Title</li>
+        </ol>
+    </section>
+    <section class="content">
+        @*<p>
+                @Html.ActionLink("Create New", "Create")
+            </p>*@
+        <table class="table">
+            @*<tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TableName)
+                    </th>
+                    <th></th>
+                </tr>    *@
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.MasterTable_Description, "Edit", new { id = item.MasterTable_ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </section><!-- /.content -->
+</aside>

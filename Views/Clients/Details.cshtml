@@ -1,0 +1,170 @@
+﻿@model eClub.Models.Client
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_IdentityCardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_IdentityCardNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_MidleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_MidleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_MaidenName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_MaidenName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_BornDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_BornDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_ChildrenNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_ChildrenNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_SendSMS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_SendSMS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_SendEMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_SendEMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dGender_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dGender_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dClientStatus_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dClientStatus_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dCitizenship_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dCitizenship_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dMaritalStatus_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dMaritalStatus_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dOccupation_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dOccupation_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dClientIncomeRange_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dClientIncomeRange_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dClientSource_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dClientSource_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mClient_FirstContactDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mClient_FirstContactDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dClientOriginalContact_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dClientOriginalContact_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SECUser_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SECUser_ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mClient_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
